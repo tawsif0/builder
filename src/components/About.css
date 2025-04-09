@@ -1,7 +1,6 @@
 .about-section {
     position: relative;
     width: 100%;
-    min-height: 100vh;
     padding: clamp(10px, 5vw, 80px) 0;
     background-color: #0a0a0a;
     color: #ffffff;
