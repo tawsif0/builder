@@ -1,0 +1,119 @@
+/* Hero.css */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Added for horizontal centering */
+    text-align: center; /* Added for text alignment */
+    background-color: #0a0a0a;
+    overflow: hidden;
+    padding-top: 80px; /* Adjust based on your navbar height */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 8%;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text alignment */
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+    text-align: inherit; /* Inherits center alignment */
+}
+
+.hero-title .highlight {
+    color: #ff4d4d;
+    text-shadow: 0 0 20px rgba(255, 77, 77, 0.6);
+}
+
+.hero-title .thin {
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    line-height: 1.6;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    margin-bottom: 3rem;
+    text-align: center; /* Explicit center alignment */
+    text-align-last: center; /* For last line justification */
+}
+
+.hero-image-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+}
+
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assests/images/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.image-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 1) 90%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: 70px;
+    }
+
+    .hero-content {
+        padding: 0 5%;
+    }
+
+    .hero-image-container {
+        height: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        text-align: center; /* Maintain center alignment on mobile */
+    }
+
+    .hero-image-container {
+        height: 45%;
+    }
+
+    .image-fade {
+        height: 100px;
+    }
+}
