@@ -27,11 +27,25 @@
 
 .about-title {
     font-size: clamp(2rem, 8vw, 5rem);
-    font-weight: 700;
+    font-weight: 900;
     letter-spacing: 5px;
     text-transform: uppercase;
     margin: 0;
     text-align: right;
+    color: transparent;
+    -webkit-text-stroke: 2px white; /* Creates the white outline */
+    position: relative;
+}
+
+.about-title::before {
+    content: 'ABOUT';
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    -webkit-text-stroke: 0;
+    z-index: -1;
+    opacity: 0.1; /* Optional: creates a shadowy backdrop for depth */
 }
 
 .title-line {
