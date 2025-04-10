@@ -5,6 +5,7 @@
     background-color: #0a0a0a;
     color: #ffffff;
     overflow: hidden;
+    margin-top: -2px;
 }
 
 .about-container {
@@ -18,11 +19,17 @@
 .about-title-container {
     position: absolute;
     right: 8%;
-    padding-top: clamp(30px, 10vw, 100px);
-    padding-bottom: 40px;
+    top: clamp(30px, 10vw, 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 2;
+    gap: 4rem;
+}
+
+.title-wrapper {
     display: flex;
     align-items: center;
-    z-index: 2;
 }
 
 .about-title {
@@ -31,10 +38,10 @@
     letter-spacing: 5px;
     text-transform: uppercase;
     margin: 0;
-    text-align: right;
     color: transparent;
-    -webkit-text-stroke: 2px white; /* Creates the white outline */
+    -webkit-text-stroke: 2px white;
     position: relative;
+    white-space: nowrap;
 }
 
 .about-title::before {
@@ -45,7 +52,7 @@
     color: white;
     -webkit-text-stroke: 0;
     z-index: -1;
-    opacity: 0.1; /* Optional: creates a shadowy backdrop for depth */
+    opacity: 0.1;
 }
 
 .title-line {
@@ -55,9 +62,21 @@
     margin-left: 15px;
 }
 
+.about-image {
+    width: 300px;
+    height: 200px;
+    background-image: url('../assests/images/Home.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .about-content {
     max-width: 600px;
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    font-size: clamp(1.1rem, 1.5vw, 1.2rem);
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 300;
@@ -73,8 +92,8 @@
     position: relative;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Responsive: Tablet & smaller */
+@media (min-width: 250px) and (max-width: 1399px) {
     .about-container {
         flex-direction: column;
         padding: 0 5%;
@@ -85,25 +104,31 @@
         right: auto;
         top: auto;
         margin-bottom: 30px;
-        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .title-wrapper {
+        flex-direction: row;
     }
 
     .about-title {
-        writing-mode: horizontal-tb;
-        transform: none;
-        margin-right: 20px;
+        font-size: clamp(2rem, 5vw, 3rem);
+        white-space: nowrap;
+        text-align: left;
     }
 
     .title-line {
-        height: 1px;
-        width: 100px;
-        margin-left: 0;
-        margin-top: 5px;
-        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+        height: 60px;
+    }
+
+    .about-image {
+        display: none;
     }
 
     .about-content {
         max-width: 100%;
         padding-top: 0;
+        font-size: clamp(1.2rem, 1.5vw, 1.5rem);
     }
 }
