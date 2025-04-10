@@ -1,7 +1,9 @@
 .our-business-section {
+    position: relative;
     background-color: #0a0a0a;
     position: relative;
     padding-top: 5rem;
+    z-index: 0;
 }
 .our-business-section::before {
     content: '';
