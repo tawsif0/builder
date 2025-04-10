@@ -1,13 +1,94 @@
 .about-section {
     position: relative;
     width: 100%;
-    padding: clamp(10px, 5vw, 80px) 0;
+    padding: clamp(10px, 10vw, 120px) 0;
     background-color: #0a0a0a;
     color: #ffffff;
     overflow: hidden;
     margin-top: -2px;
+    z-index: 0;
 }
-
+.about-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* Adjust opacity as needed */
+    z-index: 1;
+    pointer-events: none;
+}
+/* For screens between 1400px and 1600px: custom background position */
+@media (min-width: 1400px) and (max-width: 1607px) {
+    .about-section {
+        background-image: url('../assests/images/background.svg');
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-position: calc(100% - 10rem) center;
+    }
+}
+@media (min-width: 1608px) and (max-width: 1643px) {
+    .about-section {
+        background-image: url('../assests/images/background.svg');
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-position: calc(100% - 11rem) center;
+    }
+}
+@media (min-width: 1644px) and (max-width: 1700px) {
+    .about-section {
+        background-image: url('../assests/images/background.svg');
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-position: calc(100% - 12rem) center;
+    }
+}
+@media (min-width: 1700px) and (max-width: 1734px) {
+    .about-section {
+        background-image: url('../assests/images/background.svg');
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-position: calc(100% - 14rem) center;
+    }
+}
+@media (min-width: 1735px) and (max-width: 1800px) {
+    .about-section {
+        background-image: url('../assests/images/background.svg');
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-position: calc(100% - 16rem) center;
+    }
+}
+@media (min-width: 1800px) and (max-width: 1835px) {
+    .about-section {
+        background-image: url('../assests/images/background.svg');
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-position: calc(100% - 17rem) center;
+    }
+}
+@media (min-width: 1836px) and (max-width: 1865px) {
+    .about-section {
+        background-image: url('../assests/images/background.svg');
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-position: calc(100% - 18rem) center;
+    }
+}
+@media (min-width: 1866px) {
+    .about-section {
+        background-image: url('../assests/images/background.svg');
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-position: calc(100% - 19rem) center;
+    }
+}
 .about-container {
     max-width: 1400px;
     margin: 0 auto;

@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/about';
+import OurBusiness from './components/OurBusiness';
 
 const App = () => {
     return (
@@ -11,6 +12,7 @@ const App = () => {
                 <Hero />
             </section>
             <About />
+            <OurBusiness />
         </>
     );
 };
