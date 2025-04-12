@@ -3,6 +3,7 @@ import Nav from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/about';
 import OurBusiness from './components/OurBusiness';
+import Projects from './components/Projects';
 
 const App = () => {
     return (
@@ -13,6 +14,7 @@ const App = () => {
             </section>
             <About />
             <OurBusiness />
+            <Projects />
         </>
     );
 };

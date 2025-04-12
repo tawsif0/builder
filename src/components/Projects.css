@@ -1,0 +1,90 @@
+.projects-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.project-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.3s ease;
+    z-index: 0;
+}
+
+.projects-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.projects-content {
+    position: relative;
+    z-index: 2;
+    padding: 100px 60px;
+    max-width: 600px;
+}
+
+.featured-text {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.project-type {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.project-title {
+    font-size: 3rem;
+    margin: 10px 0;
+}
+
+.project-location {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.view-project {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+}
+
+.view-project .dot {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.navigation {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+.arrow {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.arrow:hover {
+    transform: scale(1.2);
+}
