@@ -28,7 +28,7 @@
 }
 .title-filter-overlay {
     position: absolute;
-    top: -11.4%;
+    top: -6.7rem;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: clamp(3rem, 9vw, 6rem);
@@ -286,12 +286,22 @@
     .hero-business-container {
         margin-top: -10vw;
     }
+    .section-business-title-container {
+        padding: 10.9rem 0;
+    }
 }
+
 @media (min-width: 993px) and (max-width: 1199px) {
+    .section-business-title-container {
+        padding: 4.4rem 0;
+    }
     .section-business-title {
         padding: 6.3rem 0;
     }
-
+    .title-filter-overlay {
+        top: -6.92rem;
+        -webkit-text-stroke: 1px white;
+    }
     .business-card-col {
         flex: 0 0 50%;
         max-width: 50%;
@@ -305,7 +315,13 @@
     .section-business-title {
         padding: 6rem 0;
     }
-
+    .title-filter-overlay {
+        top: -10.69rem;
+        -webkit-text-stroke: 1px white;
+    }
+    .section-business-title-container {
+        padding: 4.4rem 0;
+    }
     .business-card-col {
         flex: 0 0 50%;
         max-width: 50%;
@@ -315,12 +331,24 @@
         font-size: 1.6rem;
     }
 }
-
+@media (max-width: 890px) {
+    .section-business-title-container {
+        padding: 3.9rem 0;
+    }
+}
+@media (max-width: 778px) {
+    .title-filter-overlay {
+        top: -7.3rem;
+        -webkit-text-stroke: 1px white;
+    }
+}
 @media (max-width: 768px) {
     .section-business-title {
         padding: 8.7rem 0;
     }
-
+    .title-filter-overlay {
+        top: -6.89rem;
+    }
     .hero-business-container {
         margin-top: -8rem;
         min-height: 500px;
@@ -349,13 +377,48 @@
         font-size: 1rem;
     }
 }
-
+@media (max-width: 700px) {
+    .title-filter-overlay {
+        top: -6.79rem;
+    }
+}
+@media (max-width: 650px) {
+    .title-filter-overlay {
+        top: -6.49rem;
+    }
+}
+@media (max-width: 600px) {
+    .title-filter-overlay {
+        font-size: clamp(3rem, 9vw, 6rem);
+        top: -6.29rem;
+    }
+}
+@media (max-width: 570px) {
+    .title-filter-overlay {
+        font-size: clamp(3rem, 9vw, 6rem);
+        top: -8.69rem;
+    }
+}
+@media (min-width: 556px) and (max-width: 566px) {
+    .title-filter-overlay {
+        font-size: clamp(3rem, 9vw, 6rem);
+        top: -6.29rem;
+    }
+}
+@media (min-width: 526px) and (max-width: 555px) {
+    .title-filter-overlay {
+        font-size: clamp(3rem, 9vw, 6rem);
+        top: -8.59rem;
+    }
+}
 @media (max-width: 480px) {
     .section-business-title {
         font-size: 2.2rem;
         padding: 7.7rem 0;
     }
-
+    .title-filter-overlay {
+        top: -6.49rem;
+    }
     .hero-business-container {
         margin-top: -6rem;
         min-height: 400px;
