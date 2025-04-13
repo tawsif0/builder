@@ -7,24 +7,107 @@
     overflow-x: hidden;
 }
 
+/* Add to OurBusiness.css */
+
 .section-business-title-container {
     position: relative;
-    z-index: 2;
-    padding: 3.4rem 0; /* Added padding to give space */
-    margin-bottom: 0; /* Remove any default margin */
+    z-index: 1; /* Below the hero image */
+    padding: 3.4rem 0;
+    margin-bottom: 0;
 }
-
 .section-business-title {
     position: relative;
     z-index: 10;
     font-size: clamp(3rem, 9vw, 6rem);
-    font-weight: 700;
+    font-weight: 600;
     color: white;
     text-align: center;
     margin: 0;
     mix-blend-mode: normal;
     line-height: 1.1;
 }
+.title-filter-overlay {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(3rem, 9vw, 6rem);
+    font-weight: 600;
+    color: transparent;
+    -webkit-text-stroke: 2px white;
+    opacity: 1;
+    z-index: 3;
+    pointer-events: none;
+    text-align: center;
+    width: 100%;
+
+    /* Smart positioning formula */
+    top: calc(-11.4% + (100vw - 1440px) * 0.01);
+}
+
+/* Fine-tuned breakpoints with logical progression */
+@media (max-width: 1600px) {
+    .title-filter-overlay {
+        top: -12%;
+    }
+}
+
+@media (max-width: 1440px) {
+    .title-filter-overlay {
+        top: -12.5%;
+        -webkit-text-stroke: 1.9px white;
+    }
+}
+
+@media (max-width: 1280px) {
+    .title-filter-overlay {
+        top: -13%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .title-filter-overlay {
+        top: -9%;
+        -webkit-text-stroke: 1.8px white;
+    }
+}
+
+@media (max-width: 900px) {
+    .title-filter-overlay {
+        top: -13.5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .title-filter-overlay {
+        top: -14%;
+        -webkit-text-stroke: 1.5px white;
+    }
+}
+
+@media (max-width: 640px) {
+    .title-filter-overlay {
+        top: -15%;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-filter-overlay {
+        top: -16%;
+        -webkit-text-stroke: 1px white;
+        font-size: clamp(1.6rem, 7vw, 2.2rem);
+    }
+}
+
+@media (max-width: 375px) {
+    .title-filter-overlay {
+        top: -17%;
+    }
+}
+.hero-business-overlay {
+    z-index: 4 !important; /* Above everything in hero container */
+}
+
+/* Rest of your existing CSS remains the same */
 
 .hero-business-container {
     height: 100vh;
@@ -33,7 +116,8 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-top: 0; /* Removed negative margin */
+    margin-top: 0;
+    z-index: 2;
 }
 
 .hero-business-overlay {
@@ -43,7 +127,6 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
-    z-index: 2;
 }
 .hero-business-picture {
     position: absolute;
