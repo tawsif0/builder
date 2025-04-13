@@ -28,6 +28,7 @@
 }
 .title-filter-overlay {
     position: absolute;
+    top: -11.4%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: clamp(3rem, 9vw, 6rem);
@@ -35,75 +36,84 @@
     color: transparent;
     -webkit-text-stroke: 2px white;
     opacity: 1;
-    z-index: 3;
+    z-index: 3 !important;
     pointer-events: none;
     text-align: center;
     width: 100%;
-
-    /* Smart positioning formula */
-    top: calc(-11.4% + (100vw - 1440px) * 0.01);
 }
-
-/* Fine-tuned breakpoints with logical progression */
-@media (max-width: 1600px) {
+/* @media (max-width: 1300px) {
     .title-filter-overlay {
-        top: -12%;
+        top: -13.2%;
     }
 }
-
-@media (max-width: 1440px) {
-    .title-filter-overlay {
-        top: -12.5%;
-        -webkit-text-stroke: 1.9px white;
-    }
-}
-
-@media (max-width: 1280px) {
-    .title-filter-overlay {
-        top: -13%;
-    }
-}
-
+/* ----------- iPad Pro / Large Tablets ----------- */
 @media (max-width: 1024px) {
     .title-filter-overlay {
-        top: -9%;
-        -webkit-text-stroke: 1.8px white;
+        top: -12.9%;
+        font-size: clamp(2.8rem, 9vw, 9vw);
     }
 }
 
-@media (max-width: 900px) {
+/* ----------- Tablet (Landscape + Portrait) ----------- */
+@media (max-width: 992px) {
     .title-filter-overlay {
-        top: -13.5%;
+        top: -13.6%;
+        font-size: clamp(2.6rem, 9vw, 9vw);
     }
 }
-
+@media (max-width: 950px) {
+    .title-filter-overlay {
+        top: -12%;
+        font-size: clamp(2.6rem, 9vw, 9vw);
+    }
+}
+@media (max-width: 850px) {
+    .title-filter-overlay {
+        top: -13.6%;
+        font-size: clamp(2.6rem, 9vw, 9vw);
+    }
+}
+/* ----------- Small Tablets / iPad Mini / Phablets ----------- */
 @media (max-width: 768px) {
     .title-filter-overlay {
-        top: -14%;
-        -webkit-text-stroke: 1.5px white;
+        top: -9.8%;
+        font-size: clamp(2.3rem, 9vw, 9vw);
     }
 }
 
-@media (max-width: 640px) {
+/* ----------- Mobile Phones ----------- */
+@media (max-width: 576px) {
     .title-filter-overlay {
-        top: -15%;
+        top: -13.6%;
+        font-size: clamp(1.9rem, 2.2rem, 3.6rem);
     }
 }
-
-@media (max-width: 480px) {
+@media (max-width: 420px) {
     .title-filter-overlay {
-        top: -16%;
-        -webkit-text-stroke: 1px white;
-        font-size: clamp(1.6rem, 7vw, 2.2rem);
+        top: -14.2%;
+        font-size: clamp(1.6rem, 2.2rem, 3rem);
     }
 }
-
+/* ----------- Small Mobile (extra small devices) ----------- */
+@media (max-width: 400px) {
+    .title-filter-overlay {
+        top: -14.9%;
+        font-size: clamp(1.6rem, 2.2rem, 3rem);
+    }
+}
 @media (max-width: 375px) {
     .title-filter-overlay {
-        top: -17%;
+        top: -18.9%;
+        font-size: clamp(1.6rem, 2.2rem, 3rem);
     }
 }
-.hero-business-overlay {
+@media (max-width: 370px) {
+    .title-filter-overlay {
+        top: -17.2%;
+        font-size: clamp(1.6rem, 2.2rem, 3rem);
+    }
+}
+*/ .hero-business-overlay {
     z-index: 4 !important; /* Above everything in hero container */
 }
 
