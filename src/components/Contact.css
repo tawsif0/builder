@@ -1,0 +1,18 @@
+.contact-section {
+    background-color: #1c1c1c;
+}
+
+.contact-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    clip-path: inset(0% 0% 0% 15%);
+    transition: clip-path 0.5s ease-out;
+}
+
+hr {
+    opacity: 0.3;
+}
