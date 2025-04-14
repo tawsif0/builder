@@ -26,6 +26,7 @@
     mix-blend-mode: normal;
     line-height: 1.1;
 }
+/* Default: for PC — unchanged */
 .title-filter-overlay {
     position: absolute;
     top: -6.7rem;
@@ -41,78 +42,54 @@
     text-align: center;
     width: 100%;
 }
-/* @media (max-width: 1300px) {
-    .title-filter-overlay {
-        top: -13.2%;
-    }
-}
-/* ----------- iPad Pro / Large Tablets ----------- */
-@media (max-width: 1024px) {
-    .title-filter-overlay {
-        top: -12.9%;
-        font-size: clamp(2.8rem, 9vw, 9vw);
-    }
-}
 
-/* ----------- Tablet (Landscape + Portrait) ----------- */
+/* Laptop (max-width: 1199px) */
+@media (max-width: 1400px) {
+    .title-filter-overlay {
+        top: -6.5rem;
+        -webkit-text-stroke: 1.5px white;
+    }
+}
+@media (max-width: 1155px) {
+    .title-filter-overlay {
+        top: -7.5rem;
+        -webkit-text-stroke: 1.2px white;
+    }
+}
+/* iPad Pro and tablets (max-width: 992px) */
 @media (max-width: 992px) {
     .title-filter-overlay {
-        top: -13.6%;
-        font-size: clamp(2.6rem, 9vw, 9vw);
-    }
-}
-@media (max-width: 950px) {
-    .title-filter-overlay {
-        top: -12%;
-        font-size: clamp(2.6rem, 9vw, 9vw);
-    }
-}
-@media (max-width: 850px) {
-    .title-filter-overlay {
-        top: -13.6%;
-        font-size: clamp(2.6rem, 9vw, 9vw);
-    }
-}
-/* ----------- Small Tablets / iPad Mini / Phablets ----------- */
-@media (max-width: 768px) {
-    .title-filter-overlay {
-        top: -9.8%;
-        font-size: clamp(2.3rem, 9vw, 9vw);
+        top: -7.5rem;
+        -webkit-text-stroke: 1.2px white;
     }
 }
 
-/* ----------- Mobile Phones ----------- */
-@media (max-width: 576px) {
+/* Small tablets & landscape phones (max-width: 768px) */
+@media (max-width: 768px) {
     .title-filter-overlay {
-        top: -13.6%;
-        font-size: clamp(1.9rem, 2.2rem, 3.6rem);
+        top: -7rem;
+        -webkit-text-stroke: 1px white;
     }
 }
-@media (max-width: 420px) {
+
+/* Large phones (max-width: 600px) */
+@media (max-width: 600px) {
     .title-filter-overlay {
-        top: -14.2%;
-        font-size: clamp(1.6rem, 2.2rem, 3rem);
+        top: -8.6rem;
+        font-size: clamp(2.4rem, 9vw, 5rem);
+        -webkit-text-stroke: 1px white;
     }
 }
-/* ----------- Small Mobile (extra small devices) ----------- */
-@media (max-width: 400px) {
+
+/* Small phones (max-width: 480px) */
+@media (max-width: 480px) {
     .title-filter-overlay {
-        top: -14.9%;
-        font-size: clamp(1.6rem, 2.2rem, 3rem);
+        top: -8.49rem;
+        font-size: clamp(2.2rem, 2.2rem, 4.5rem);
+        -webkit-text-stroke: 0.8px white;
     }
 }
-@media (max-width: 375px) {
-    .title-filter-overlay {
-        top: -18.9%;
-        font-size: clamp(1.6rem, 2.2rem, 3rem);
-    }
-}
-@media (max-width: 370px) {
-    .title-filter-overlay {
-        top: -17.2%;
-        font-size: clamp(1.6rem, 2.2rem, 3rem);
-    }
-}
+
 */ .hero-business-overlay {
     z-index: 4 !important; /* Above everything in hero container */
 }
@@ -298,10 +275,7 @@
     .section-business-title {
         padding: 6.3rem 0;
     }
-    .title-filter-overlay {
-        top: -6.92rem;
-        -webkit-text-stroke: 1px white;
-    }
+
     .business-card-col {
         flex: 0 0 50%;
         max-width: 50%;
@@ -315,10 +289,7 @@
     .section-business-title {
         padding: 6rem 0;
     }
-    .title-filter-overlay {
-        top: -10.69rem;
-        -webkit-text-stroke: 1px white;
-    }
+
     .section-business-title-container {
         padding: 4.4rem 0;
     }
@@ -336,18 +307,10 @@
         padding: 3.9rem 0;
     }
 }
-@media (max-width: 778px) {
-    .title-filter-overlay {
-        top: -7.3rem;
-        -webkit-text-stroke: 1px white;
-    }
-}
+
 @media (max-width: 768px) {
     .section-business-title {
         padding: 8.7rem 0;
-    }
-    .title-filter-overlay {
-        top: -6.89rem;
     }
     .hero-business-container {
         margin-top: -8rem;
@@ -377,48 +340,13 @@
         font-size: 1rem;
     }
 }
-@media (max-width: 700px) {
-    .title-filter-overlay {
-        top: -6.79rem;
-    }
-}
-@media (max-width: 650px) {
-    .title-filter-overlay {
-        top: -6.49rem;
-    }
-}
-@media (max-width: 600px) {
-    .title-filter-overlay {
-        font-size: clamp(3rem, 9vw, 6rem);
-        top: -6.29rem;
-    }
-}
-@media (max-width: 570px) {
-    .title-filter-overlay {
-        font-size: clamp(3rem, 9vw, 6rem);
-        top: -8.69rem;
-    }
-}
-@media (min-width: 556px) and (max-width: 566px) {
-    .title-filter-overlay {
-        font-size: clamp(3rem, 9vw, 6rem);
-        top: -6.29rem;
-    }
-}
-@media (min-width: 526px) and (max-width: 555px) {
-    .title-filter-overlay {
-        font-size: clamp(3rem, 9vw, 6rem);
-        top: -8.59rem;
-    }
-}
+
 @media (max-width: 480px) {
     .section-business-title {
         font-size: 2.2rem;
         padding: 7.7rem 0;
     }
-    .title-filter-overlay {
-        top: -6.49rem;
-    }
+
     .hero-business-container {
         margin-top: -6rem;
         min-height: 400px;
