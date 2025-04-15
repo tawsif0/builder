@@ -18,7 +18,7 @@ hr {
 }
 
 .contact-section h1,
-.contact-link {
+.contact-links {
     opacity: 0;
     transform: translateX(-20px);
     will-change: transform, opacity;
@@ -29,16 +29,16 @@ hr {
     transition: transform 0.8s ease-out, opacity 0.8s ease-out;
 }
 
-.contact-link {
+.contact-links {
     transition: transform 0.6s ease-out, opacity 0.6s ease-out;
 }
 
 /* Delay for the first link */
-.contact-link:first-of-type {
+.contact-links:first-of-type {
     transition-delay: 0.2s;
 }
 
 /* Delay for the second link */
-.contact-link:last-of-type {
+.contact-links:last-of-type {
     transition-delay: 0.4s;
 }

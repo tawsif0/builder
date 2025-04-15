@@ -78,7 +78,7 @@ const Contact = () => {
                         </h1>
 
                         <Link to="/contact/clients" className="text-decoration-none">
-                            <div ref={clientLinkRef} className="mb-4 contact-link p-2 rounded">
+                            <div ref={clientLinkRef} className="mb-4 contact-links p-2 rounded">
                                 <div className="d-flex justify-content-between align-items-center">
                                     <h4 className="text-danger mb-2">Clients</h4>
                                     <span className="text-danger fs-5">↗</span>
@@ -90,7 +90,7 @@ const Contact = () => {
                         <hr className="border-light" />
 
                         <Link to="/contact/landowners" className="text-decoration-none">
-                            <div ref={landownerLinkRef} className="mb-4 contact-link p-2 rounded">
+                            <div ref={landownerLinkRef} className="mb-4 contact-links p-2 rounded">
                                 <div className="d-flex justify-content-between align-items-center">
                                     <h4 className="text-danger mb-2">Landowners</h4>
                                     <span className="text-danger fs-5">↗</span>

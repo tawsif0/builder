@@ -149,7 +149,7 @@ const ContactForm = () => {
                         <div className="col-md-6 d-flex flex-column justify-content-center">
                             <h1 className="display-4 fw-bold mb-5">CONTACT US</h1>
 
-                            <Link to="/" className="text-decoration-none">
+                            <Link to="/contact/clients" className="text-decoration-none">
                                 <div className="mb-4 contact-link p-2 rounded">
                                     <div className="d-flex justify-content-between align-items-center">
                                         <h4 className="text-danger mb-2">Clients</h4>
