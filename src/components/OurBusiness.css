@@ -90,7 +90,7 @@
     }
 }
 
-*/ .hero-business-overlay {
+.hero-business-overlay {
     z-index: 4 !important; /* Above everything in hero container */
 }
 
