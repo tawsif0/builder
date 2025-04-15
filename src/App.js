@@ -11,6 +11,7 @@ import ScrollToTop from './components/scroll-top/ScrollToTop';
 import Footer from './components/Footer';
 import ContactForm from './pages/ContactForm';
 import LandownerSection from './pages/LandOwner';
+import ClientSection from './pages/Clients';
 
 const App = () => {
     return (
@@ -37,6 +38,7 @@ const App = () => {
                 <Route path="*" element={<Error />} />
                 <Route path="/contact/general" element={<ContactForm />} />
                 <Route path="/contact/landowners" element={<LandownerSection />} />
+                <Route path="/contact/clients" element={<ClientSection />} />
             </Routes>
             <Footer />
         </>

@@ -41,6 +41,7 @@ const OurBusiness = () => {
     const titleRef = useRef(null);
     const filterRef = useRef(null);
     const heroRef = useRef(null);
+    const businessCardsRef = useRef([]);
     const { scrollYProgress } = useScroll();
 
     // Hero image reveal animation
@@ -59,26 +60,25 @@ const OurBusiness = () => {
                     trigger: sectionRef.current,
                     start: 'top center',
                     end: 'center center',
-                    scrub: 1
+                    scrub: true, // Changed to true for smoother scrubbing
+                    toggleActions: 'play play reverse reverse' // Will play on both enter and leave
                 }
             }
         );
 
-        // Filter animation (separate from title)
+        // Filter animation
         gsap.fromTo(
             filterRef.current,
-            {
-                y: 100,
-                opacity: 1
-            },
+            { y: 100, opacity: 1 },
             {
                 y: 0,
-                opacity: 1.2, // Lower opacity for the filter effect
+                opacity: 1.2,
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: 'top center',
                     end: 'center center',
-                    scrub: 1
+                    scrub: true,
+                    toggleActions: 'play play reverse reverse'
                 }
             }
         );
@@ -93,11 +93,48 @@ const OurBusiness = () => {
                     trigger: sectionRef.current,
                     start: 'top bottom',
                     end: 'center center',
-                    scrub: 1
+                    scrub: true,
+                    toggleActions: 'play play reverse reverse'
                 }
             }
         );
+
+        // Business cards animation with proper reset
+
+        const cardAnimation = gsap.fromTo(
+            businessCardsRef.current,
+            {
+                y: 100,
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.3,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.business-card-container',
+                    start: 'top 80%', // Adjusted for better trigger point
+                    end: 'top 30%',
+                    toggleActions: 'play play reset reset', // Reset instead of reverse
+                    onEnter: () => gsap.set(businessCardsRef.current, { clearProps: 'all' }),
+                    markers: false // Set to true to debug positions
+                }
+            }
+        );
+        return () => {
+            cardAnimation.kill();
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        };
     }, []);
+
+    // Add ref to each business card
+    const addToRefs = (el) => {
+        if (el && !businessCardsRef.current.includes(el)) {
+            businessCardsRef.current.push(el);
+        }
+    };
 
     return (
         <div className="our-business-section" ref={sectionRef}>
@@ -137,7 +174,7 @@ const OurBusiness = () => {
                 <Row className="g-4 justify-content-center">
                     {businesses.map((biz, idx) => (
                         <Col key={idx} md={4} className="business-card-col">
-                            <div className="business-card">
+                            <div className="business-card" ref={addToRefs}>
                                 <img src={biz.image} alt={biz.title} className="card-img" />
                                 <div className="bottom-title">
                                     <h5>{biz.title}</h5>

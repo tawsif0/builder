@@ -5,13 +5,13 @@ import emailjs from 'emailjs-com';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import './Landowner.css';
+import './Client.css';
 import heroDesktop from '../assests/images/bg-pc.png';
 import heroTablet from '../assests/images/bg-pc.png';
 import heroMobile from '../assests/images/bg.png';
 
 gsap.registerPlugin(ScrollTrigger);
-const LandownerSection = () => {
+const ClientSection = () => {
     const imageRef = useRef(null);
     const sectionRef = useRef(null);
     const titleRef = useRef(null);
@@ -123,15 +123,14 @@ const LandownerSection = () => {
             }
         );
 
-        // Right form elements slide from right
+        // Right form element slide from right
         gsap.fromTo(
-            formRightRef.current.querySelectorAll('.floating-label-group'),
+            formRightRef.current.querySelector('.floating-label-group'),
             { x: 100, opacity: 0 },
             {
                 x: 0,
                 opacity: 1,
                 duration: 0.8,
-                stagger: 0.2,
                 scrollTrigger: {
                     trigger: formRightRef.current,
                     start: 'top 70%',
@@ -146,13 +145,11 @@ const LandownerSection = () => {
         };
     }, []);
 
-    // Landowner form state
     const [formData, setFormData] = useState({
-        landAddress: '',
-        landSize: '',
         name: '',
         email: '',
-        contactNumber: ''
+        contactNumber: '',
+        message: ''
     });
 
     const [errors, setErrors] = useState({});
@@ -160,11 +157,10 @@ const LandownerSection = () => {
 
     const validate = () => {
         const temp = {};
-        if (!formData.landAddress) temp.landAddress = 'Land address is required';
-        if (!formData.landSize) temp.landSize = 'Land size is required';
         if (!formData.name) temp.name = 'Name is required';
         if (!formData.email) temp.email = 'Email is required';
         if (!formData.contactNumber) temp.contactNumber = 'Phone number is required';
+        if (!formData.message) temp.message = 'Message can not be empty';
         setErrors(temp);
         return Object.keys(temp).length === 0;
     };
@@ -183,11 +179,10 @@ const LandownerSection = () => {
             .then(() => {
                 setSubmitted(true);
                 setFormData({
-                    landAddress: '',
-                    landSize: '',
                     name: '',
                     email: '',
-                    contactNumber: ''
+                    contactNumber: '',
+                    message: ''
                 });
                 setErrors({});
             })
@@ -197,96 +192,63 @@ const LandownerSection = () => {
     };
 
     return (
-        <div className="landowner-page" ref={sectionRef}>
+        <div className="client-page" ref={sectionRef}>
             {/* Hero Section */}
-            <div className="section-landowner-title-container">
-                <h1 className="section-landowner-title" ref={titleRef}>
-                    LANDOWNERS
+            <div className="section-client-title-container">
+                <h1 className="section-client-title" ref={titleRef}>
+                    CLIENTS
                 </h1>
             </div>
 
             {/* Hero image container */}
-            <Container fluid className="hero-landowner-container position-relative overflow-hidden">
-                <div className="landowner-title-filter-overlay" ref={filterRef}>
-                    LANDOWNERS
+            <Container fluid className="hero-client-container position-relative overflow-hidden">
+                <div className="client-title-filter-overlay" ref={filterRef}>
+                    CLIENTS
                 </div>
 
-                <motion.div className="hero-landowner-picture" ref={imageRef}>
+                <motion.div className="hero-client-picture" ref={imageRef}>
                     <picture>
                         <source media="(max-width: 480px)" srcSet={heroMobile} />
                         <source media="(max-width: 1024px)" srcSet={heroTablet} />
-                        <img className="hero-landowner-img" src={heroDesktop} alt="landlord" loading="eager" />
+                        <img className="hero-client-img" src={heroDesktop} alt="client" loading="eager" />
                     </picture>
                 </motion.div>
-                <div className="hero-landowner-overlay"></div>
+                <div className="hero-client-overlay"></div>
             </Container>
 
             {/* Form Section */}
-            <div className="landowner-section text-white">
+            <div className="client-section text-white">
                 <Container>
                     <div className="message-box text-center mb-5" ref={messageBoxRef}>
-                        <h2 className="sections-title">A MESSAGE FOR LANDOWNERS</h2>
+                        <h2 className="sections-title">A message for clients</h2>
                         <p>
-                            Live in the cocooned comfort of luxury, bathed in architectural elegance. MAMM Properties presents meticulously crafted residences, where exquisite craftsmanship meets
-                            timeless design. Each home is a testament to sophistication, perfectly complementing your distinguished lifestyle.
+                            Acquiring an apartment, a home or even an office space is a person's life-long dream. This dream drives him or her to accumulate the required finance slowly and gradually,
+                            which is the start of shaping this dream into reality. This relentless pursuit of realizing such a dream can flow from generation to generation. But finally, when a space
+                            is purchased, has anyone thought to what extent this "dream" is actually fulfilled?
                         </p>
                         <p>
-                            Experience architectural brilliance, unmatched craftsmanship, and unparalleled comfort—hallmarks of every MAMM property. Here, you don't just own a residence; you embrace a
-                            life of grandeur and refinement.
+                            We know that moment is an important stepping-stone for you, and hence we at MAMM have been preparing for just that. Our apartments, condominiums and commercial complexes
+                            compete with the best that the modern world has to offer. From temperature-controlled swimming pools to lush rooftop gardens and terraces, from state-of-the-art gymnasiums
+                            to spacious walkways and children's play facilities, you'll find the solution to your need for stylish urban living with us at SHL.
                         </p>
                         <p>
-                            Harmony with nature awaits you. Every MAMM property is thoughtfully integrated with the natural environment, blending modern luxury with serene greenery for a balanced,
-                            tranquil living experience.
-                        </p>
-                        <p>
-                            Interested landowners can reach out to us at
-                            <a href="mailto:land@mamm.com" className="email-link">
-                                {' '}
-                                land@mamm.com
-                            </a>{' '}
-                            or fill out the form below to explore collaboration opportunities.
+                            Even business becomes a pleasure in our commercial spaces with central air-conditioning, triple-height lobby areas multilayered parking facilities and much more. Because at
+                            MAMM, we're not just building spaces; we're crafting dreams into reality, ensuring that your journey to owning a piece of opulence is as exceptional as the dream itself.
                         </p>
                     </div>
 
-                    <div className="form-box container" ref={formContainerRef}>
-                        <h2 className="text-center mb-4">LET'S CONNECT</h2>
+                    <div className="form-containers" ref={formContainerRef}>
+                        <h2 className="text-center mb-4 mt-4">LET'S CONNECT</h2>
                         {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
+
                         <Form onSubmit={handleSubmit}>
                             <Row>
                                 <Col md={6} ref={formLeftRef}>
                                     <div className="floating-label-group">
-                                        <Form.Label>Land Address*</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Full Address of the land"
-                                            name="landAddress"
-                                            value={formData.landAddress}
-                                            onChange={handleChange}
-                                            className={`custom-input ${errors.landAddress ? 'input-error' : ''}`}
-                                        />
-                                        {errors.landAddress && <div className="error-text">{errors.landAddress}</div>}
-                                    </div>
-
-                                    <div className="floating-label-group">
-                                        <Form.Label>Land Size*</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="In kathas (Rounded)"
-                                            name="landSize"
-                                            value={formData.landSize}
-                                            onChange={handleChange}
-                                            className={`custom-input ${errors.landSize ? 'input-error' : ''}`}
-                                        />
-                                        {errors.landSize && <div className="error-text">{errors.landSize}</div>}
-                                    </div>
-                                </Col>
-
-                                <Col md={6} ref={formRightRef}>
-                                    <div className="floating-label-group">
                                         <Form.Label>Name*</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Name *"
+                                            placeholder="Your Name"
                                             name="name"
                                             value={formData.name}
                                             onChange={handleChange}
@@ -299,7 +261,7 @@ const LandownerSection = () => {
                                         <Form.Label>Email*</Form.Label>
                                         <Form.Control
                                             type="email"
-                                            placeholder="Email *"
+                                            placeholder="Your Email"
                                             name="email"
                                             value={formData.email}
                                             onChange={handleChange}
@@ -312,7 +274,7 @@ const LandownerSection = () => {
                                         <Form.Label>Contact Number*</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="Contact Number *"
+                                            placeholder="Your Phone Number"
                                             name="contactNumber"
                                             value={formData.contactNumber}
                                             onChange={handleChange}
@@ -321,8 +283,22 @@ const LandownerSection = () => {
                                         {errors.contactNumber && <div className="error-text">{errors.contactNumber}</div>}
                                     </div>
                                 </Col>
+                                <Col md={6} ref={formRightRef}>
+                                    <div className="floating-label-group">
+                                        <Form.Label>Your Message Here</Form.Label>
+                                        <Form.Control
+                                            as="textarea"
+                                            rows={8}
+                                            placeholder="Type your message here..."
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            className={`custom-input custom-textarea ${errors.message ? 'input-error' : ''}`}
+                                        />
+                                        {errors.message && <div className="error-text">{errors.message}</div>}
+                                    </div>
+                                </Col>
                             </Row>
-
                             <div className="text-center mt-4">
                                 <Button type="submit" className="submit-btns">
                                     <span className="arrows-circles">➜</span>
@@ -337,4 +313,4 @@ const LandownerSection = () => {
     );
 };
 
-export default LandownerSection;
+export default ClientSection;

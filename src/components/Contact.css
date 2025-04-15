@@ -16,3 +16,29 @@
 hr {
     opacity: 0.3;
 }
+
+.contact-section h1,
+.contact-link {
+    opacity: 0;
+    transform: translateX(-20px);
+    will-change: transform, opacity;
+}
+
+/* Animation timing */
+.contact-section h1 {
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.contact-link {
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+/* Delay for the first link */
+.contact-link:first-of-type {
+    transition-delay: 0.2s;
+}
+
+/* Delay for the second link */
+.contact-link:last-of-type {
+    transition-delay: 0.4s;
+}

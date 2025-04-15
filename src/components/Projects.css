@@ -166,3 +166,14 @@
     transform-origin: left center;
     will-change: transform;
 }
+/* Add these to your existing Projects.css */
+
+.projects-section {
+    opacity: 0; /* Start hidden for animation */
+    will-change: transform, opacity; /* Optimize for animation */
+}
+
+.projects-content {
+    opacity: 0; /* Start hidden for animation */
+    will-change: transform, opacity; /* Optimize for animation */
+}

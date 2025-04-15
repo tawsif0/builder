@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Projects.css';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const projectsData = [
     {
@@ -28,9 +29,11 @@ const projectsData = [
 const Projects = () => {
     const [current, setCurrent] = useState(0);
     const [displayedIndex, setDisplayedIndex] = useState(0);
+    const currentRef = useRef(0);
 
-    const currentRef = useRef(0); // NEW: Track current index in real-time
-
+    // Animation refs
+    const sectionRef = useRef(null);
+    const contentRef = useRef(null);
     const currentImageRef = useRef(null);
     const nextImageRef = useRef(null);
     const progressItemsRef = useRef([]);
@@ -73,8 +76,8 @@ const Projects = () => {
                 gsap.set(currentImage, { y: 0, opacity: 1, zIndex: 2 });
                 gsap.set(nextImage, { opacity: 0 });
 
-                currentRef.current = nextIndex; // ✅ Correct current index reference
-                setCurrent(nextIndex); // optional UI re-render
+                currentRef.current = nextIndex;
+                setCurrent(nextIndex);
 
                 startZoomAnimation();
                 startProgressAnimation(nextIndex);
@@ -141,6 +144,45 @@ const Projects = () => {
     };
 
     useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Section scroll animation
+        gsap.fromTo(
+            sectionRef.current,
+            { y: 100, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    toggleActions: 'play play reset reset',
+                    markers: false // Set to true to debug positions
+                }
+            }
+        );
+
+        // Content scroll animation
+        gsap.fromTo(
+            contentRef.current,
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 70%',
+                    end: 'top 50%',
+                    toggleActions: 'play play reset reset'
+                }
+            }
+        );
+
+        // Initialize slider
         gsap.set(currentImageRef.current, {
             backgroundImage: `url(${projectsData[current].image})`,
             scale: 1,
@@ -156,7 +198,7 @@ const Projects = () => {
         });
 
         setDisplayedIndex(current);
-        currentRef.current = current; // Initialize currentRef too
+        currentRef.current = current;
         startZoomAnimation();
         startProgressAnimation(current);
         startAutoSlide();
@@ -165,6 +207,7 @@ const Projects = () => {
             clearInterval(intervalRef.current);
             if (zoomTweenRef.current) zoomTweenRef.current.kill();
             if (progressTweenRef.current) progressTweenRef.current.kill();
+            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         };
     }, []);
 
@@ -177,11 +220,12 @@ const Projects = () => {
     }, [displayedIndex]);
 
     return (
-        <section className="projects-section">
+        <section className="projects-section" ref={sectionRef}>
+            <div className="projects-overlay" />
             <div className="project-image current" ref={currentImageRef} />
             <div className="project-image next" ref={nextImageRef} />
 
-            <div className="projects-content container">
+            <div className="projects-content container" ref={contentRef}>
                 <p className="featured-text">FEATURED PROJECTS</p>
                 <div className="project-contents">
                     <p className="project-type">{projectsData[displayedIndex].type}</p>
@@ -192,7 +236,7 @@ const Projects = () => {
                     <div
                         className="navigation"
                         style={{
-                            width: `${projectsData.length * 25 + (projectsData.length - 1) * 8}px` // same as progress-bars width
+                            width: `${projectsData.length * 25 + (projectsData.length - 1) * 8}px`
                         }}>
                         <div className="arrow-buttons">
                             <button className="project-arrow left" onClick={prevSlide}>

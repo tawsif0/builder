@@ -1,21 +1,21 @@
-.landowner-page {
+.client-page {
     position: relative;
     padding: 250px 0 50px;
     z-index: 0;
     overflow-x: hidden;
 }
 @media (max-width: 767px) {
-    .landowner-page {
+    .client-page {
         padding: 8rem 1rem 4rem !important;
     }
 }
-.section-landowner-title-container {
+.section-client-title-container {
     position: relative;
-    z-index: 1; /* Below the hero image */
+    z-index: 1;
     padding: 3.4rem 0;
     margin-bottom: 0;
 }
-.section-landowner-title {
+.section-client-title {
     position: relative;
     z-index: 10;
     font-size: clamp(3rem, 9vw, 6rem);
@@ -26,8 +26,8 @@
     mix-blend-mode: normal;
     line-height: 1.1;
 }
-/* Default: for PC — unchanged */
-.landowner-title-filter-overlay {
+
+.client-title-filter-overlay {
     position: absolute;
     top: -6.7rem;
     left: 50%;
@@ -43,65 +43,56 @@
     width: 100%;
 }
 
-/* Laptop (max-width: 1199px) */
 @media (max-width: 1400px) {
-    .landowner-title-filter-overlay {
+    .client-title-filter-overlay {
         top: -6.8rem;
         -webkit-text-stroke: 1.5px white;
     }
 }
 @media (max-width: 1155px) {
-    .landowner-title-filter-overlay {
+    .client-title-filter-overlay {
         top: -5rem;
         -webkit-text-stroke: 1.2px white;
     }
 }
-/* iPad Pro and tablets (max-width: 992px) */
 @media (max-width: 992px) {
-    .landowner-title-filter-overlay {
+    .client-title-filter-overlay {
         top: -8.5rem;
         -webkit-text-stroke: 1.2px white;
     }
 }
 @media (max-width: 890px) {
-    .landowner-title-filter-overlay {
+    .client-title-filter-overlay {
         top: -4.9rem;
         -webkit-text-stroke: 1.2px white;
     }
 }
-/* Small tablets & landscape phones (max-width: 768px) */
 @media (max-width: 768px) {
-    .landowner-title-filter-overlay {
+    .client-title-filter-overlay {
         top: -5.8rem;
         -webkit-text-stroke: 1px white;
     }
 }
-
-/* Large phones (max-width: 600px) */
 @media (max-width: 600px) {
-    .landowner-title-filter-overlay {
+    .client-title-filter-overlay {
         top: -9.9rem;
         font-size: clamp(2.4rem, 9vw, 5rem);
         -webkit-text-stroke: 1px white;
     }
 }
-
-/* Small phones (max-width: 480px) */
 @media (max-width: 480px) {
-    .landowner-title-filter-overlay {
+    .client-title-filter-overlay {
         top: -8.49rem;
         font-size: clamp(2.2rem, 2.2rem, 4.5rem);
         -webkit-text-stroke: 0.8px white;
     }
 }
 
-.hero-landowner-overlay {
-    z-index: 4 !important; /* Above everything in hero container */
+.hero-client-overlay {
+    z-index: 4 !important;
 }
 
-/* Rest of your existing CSS remains the same */
-
-.hero-landowner-container {
+.hero-client-container {
     height: 100vh;
     min-height: 800px;
     display: flex;
@@ -112,7 +103,7 @@
     z-index: 2;
 }
 
-.hero-landowner-overlay {
+.hero-client-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -120,8 +111,8 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
 }
-/* Replace the existing .hero-landowner-picture styles with these: */
-.hero-landowner-picture {
+
+.hero-client-picture {
     position: absolute;
     top: 0;
     left: 0;
@@ -131,13 +122,13 @@
     overflow: hidden;
 }
 
-.hero-landowner-picture picture {
+.hero-client-picture picture {
     width: 100%;
     height: 100%;
     display: block;
 }
 
-.hero-landowner-img {
+.hero-client-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -146,85 +137,84 @@
     clip-path: inset(0% 0% 0% 0%);
     transition: clip-path 3s ease-out;
 }
+
 @media (max-width: 1200px) {
-    .hero-landowner-container {
+    .hero-client-container {
         margin-top: -10vw;
     }
-    .section-landowner-title-container {
+    .section-client-title-container {
         padding: 10.9rem 0;
     }
 }
 @media (max-width: 1199px) {
-    .section-landowner-title-container {
+    .section-client-title-container {
         padding: 4.4rem 0;
     }
-    .section-landowner-title {
+    .section-client-title {
         padding: 6.3rem 0;
     }
 }
 @media (min-width: 993px) and (max-width: 1160px) {
-    .section-landowner-title-container {
+    .section-client-title-container {
         padding: 2rem 0;
     }
-    .section-landowner-title {
+    .section-client-title {
         padding: 6.3rem 0;
     }
 }
 @media (max-width: 992px) {
-    .section-landowner-title {
+    .section-client-title {
         padding: 6rem 0;
     }
-
-    .section-landowner-title-container {
+    .section-client-title-container {
         padding: 4.4rem 0;
     }
 }
 @media (max-width: 890px) {
-    .section-landowner-title-container {
+    .section-client-title-container {
         padding: 1.9rem 0;
     }
 }
-
 @media (max-width: 768px) {
-    .section-landowner-title {
+    .section-client-title {
         padding: 8.7rem 0;
     }
-    .hero-landowner-container {
+    .hero-client-container {
         margin-top: -8rem;
         min-height: 500px;
     }
-    .section-landowner-title-container {
+    .section-client-title-container {
         padding: 2.9rem 0;
     }
 }
 @media (max-width: 600px) {
-    .section-landowner-title-container {
+    .section-client-title-container {
         padding: 5.4rem 0;
     }
-    .section-landowner-title {
+    .section-client-title {
         padding: 8.7rem 0;
     }
-    .hero-landowner-container {
+    .hero-client-container {
         margin-top: -8rem;
         min-height: 500px;
     }
 }
 @media (max-width: 480px) {
-    .section-landowner-title {
+    .section-client-title {
         font-size: 2.2rem;
         padding: 7.7rem 0;
     }
-    .section-landowner-title-container {
+    .section-client-title-container {
         padding: 3.9rem 0;
     }
-    .hero-landowner-container {
+    .hero-client-container {
         margin-top: -6rem;
         min-height: 400px;
     }
 }
 
-/* Form part */
-.landowner-section {
+/* Form section */
+.client-section {
     background-color: #111;
     padding: 80px 0;
     font-family: 'Segoe UI', sans-serif;
@@ -253,20 +243,15 @@
     color: #ddd;
 }
 
-.email-link {
-    color: #ffc107;
-    text-decoration: none;
+.form-containers {
+    margin-top: 7rem;
 }
 
-.form-box {
-    margin-top: 50px;
-}
-
-.form-box h2 {
+.form-containers h2 {
     text-align: center;
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 3rem !important;
 }
 
 .floating-label-group {
@@ -278,6 +263,7 @@
     margin-bottom: 6px;
     font-weight: 500;
     color: #fff;
+    display: block;
 }
 
 .custom-input {
@@ -287,11 +273,18 @@
     padding: 15px !important;
     border-radius: 0 !important;
     font-size: 1rem !important;
+    width: 100%;
 }
 
 .custom-input::placeholder {
     color: #aaa !important;
 }
+
+.custom-textarea {
+    min-height: 200px;
+    resize: vertical;
+}
+
 .input-error {
     border: 1px solid #ff4d4d !important;
 }
@@ -355,21 +348,47 @@
     transform: translateX(5px) !important;
 }
 
+/* Message box on right */
+.message-box-right {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 0 15px;
+    }
+
+    .message-box-right {
+        margin-top: 30px;
+    }
+
+    .custom-textarea {
+        min-height: 150px;
+    }
+}
+
 @media (min-width: 768px) {
-    .form-box .col-md-6 {
+    .form-container .col-md-6 {
         display: flex;
         flex-direction: column;
         gap: 30px;
     }
+
+    .message-box-right {
+        padding-left: 30px;
+    }
 }
-/* Add these to your existing Landowner.css */
+/* Add these to your existing Client.css */
 
 .message-box {
     opacity: 0; /* Start hidden for animation */
     transform: translateY(20px); /* Initial position for animation */
 }
 
-.form-box {
+.form-containers {
     opacity: 0; /* Start hidden for animation */
     transform: translateX(-20px); /* Initial position for animation */
 }
@@ -380,14 +399,14 @@
 
 /* Ensure smooth transitions */
 .message-box,
-.form-box,
+.form-containers,
 .floating-label-group {
     will-change: transform, opacity;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .form-box {
+    .form-containers {
         transform: translateX(0);
     }
 }
