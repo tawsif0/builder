@@ -49,7 +49,7 @@ const Contact = () => {
 
                         <hr className="border-light" />
 
-                        <Link to="/" className="text-decoration-none">
+                        <Link to="/contact/landowners" className="text-decoration-none">
                             <div className="mb-4 contact-link p-2 rounded">
                                 <div className="d-flex justify-content-between align-items-center">
                                     <h4 className="text-danger mb-2">Landowners</h4>

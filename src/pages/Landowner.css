@@ -1,0 +1,135 @@
+.landowner-section {
+    background-color: #111;
+    padding: 80px 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.message-box {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.message-box p {
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    color: #ddd;
+}
+
+.email-link {
+    color: #ffc107;
+    text-decoration: none;
+}
+
+.form-box {
+    margin-top: 50px;
+}
+
+.form-box h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.floating-label-group {
+    margin-bottom: 30px;
+}
+
+.floating-label-group label {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.custom-input {
+    background-color: transparent !important;
+    border: 1px solid #fff !important;
+    color: white;
+    padding: 15px !important;
+    border-radius: 0 !important;
+    font-size: 1rem !important;
+}
+
+.custom-input::placeholder {
+    color: #aaa !important;
+}
+
+.custom-input:focus {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border-color: #fff !important;
+    color: white !important;
+}
+
+.error-text {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+.submit-btns {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    background: transparent !important;
+    color: #fff !important;
+    padding: 12px 24px !important;
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: 60px !important;
+    cursor: pointer !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.4s ease-in-out !important;
+}
+
+.arrows-circles {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #fff !important;
+    color: #111 !important;
+    border-radius: 50% !important;
+    width: 32px !important;
+    height: 32px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: none !important;
+}
+
+/* Hover effects */
+.submit-btns:hover .arrows-circles {
+    transform: scale(1.1);
+    box-shadow: 0 0 12px 4px rgba(255, 0, 0, 0.4);
+    background-color: rgb(243, 67, 67) !important;
+    color: #000000 !important;
+}
+
+.submit-btns span {
+    transition: transform 0.4s ease !important;
+}
+
+.submit-btns:hover span:last-child {
+    transform: translateX(5px) !important;
+}
+
+@media (min-width: 768px) {
+    .form-box .col-md-6 {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+}

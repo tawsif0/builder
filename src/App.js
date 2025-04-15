@@ -8,10 +8,14 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Error from './pages/Error';
 import ScrollToTop from './components/scroll-top/ScrollToTop';
+import Footer from './components/Footer';
+import ContactForm from './pages/ContactForm';
+import LandownerSection from './pages/LandOwner';
 
 const App = () => {
     return (
         <>
+            <Nav />
             <ScrollToTop />
             <Routes>
                 <Route
@@ -19,18 +23,22 @@ const App = () => {
                     element={
                         <>
                             <section id="hero-section">
-                                <Nav />
                                 <Hero />
                             </section>
-                            <About />
+                            <section id="about-section">
+                                <About />
+                            </section>
                             <OurBusiness />
                             <Projects />
                             <Contact />
                         </>
                     }
                 />
-                <Route path="*" element={<Error />} /> {/* ✅ Catch-all route */}
+                <Route path="*" element={<Error />} />
+                <Route path="/contact/general" element={<ContactForm />} />
+                <Route path="/contact/landowners" element={<LandownerSection />} />
             </Routes>
+            <Footer />
         </>
     );
 };

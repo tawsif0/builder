@@ -4,6 +4,7 @@ import { Navbar, Offcanvas, Container } from 'react-bootstrap';
 import { FiMenu } from 'react-icons/fi';
 import { IoIosArrowForward } from 'react-icons/io';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 const Nav = () => {
@@ -12,6 +13,7 @@ const Nav = () => {
     const [menuHistory, setMenuHistory] = useState(['main']);
     const [scrolled, setScrolled] = useState(false);
     const [hoverMenu, setHoverMenu] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -31,12 +33,24 @@ const Nav = () => {
 
     const handleShow = () => setShowSidebar(true);
 
+    const scrollToSection = (sectionId) => {
+        handleClose();
+        navigate('/');
+        setTimeout(() => {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }, 300);
+    };
+
     const navigateToMenu = (menuName) => {
         if (['business', 'projects', 'contact'].includes(menuName)) {
             setMenuHistory([...menuHistory, menuName]);
             setActiveMenu(menuName);
-        } else {
-            handleClose();
         }
     };
 
@@ -82,17 +96,24 @@ const Nav = () => {
                                 Navigate through our website
                             </motion.p>
                         </div>
-                        {['home', 'about', 'business', 'projects', 'news', 'contact'].map((item, index) => (
+                        {[
+                            { id: 'home', label: 'Home', section: 'hero-section' },
+                            { id: 'about', label: 'About', section: 'about-section' },
+                            { id: 'business', label: 'Our Business' },
+                            { id: 'projects', label: 'Projects' },
+                            { id: 'news', label: 'News & Events' },
+                            { id: 'contact', label: 'Contact' }
+                        ].map((item, index) => (
                             <motion.div
-                                key={item}
+                                key={item.id}
                                 className="menu-item"
-                                onClick={() => navigateToMenu(item)}
+                                onClick={() => (item.section ? scrollToSection(item.section) : navigateToMenu(item.id))}
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.2 + index * 0.05 }}>
-                                <span>{item === 'business' ? 'Our Business' : item === 'news' ? 'News & Events' : item.charAt(0).toUpperCase() + item.slice(1)}</span>
+                                <span>{item.label}</span>
                                 <div className="menu-item-hover"></div>
-                                {['business', 'projects', 'contact'].includes(item) && <IoIosArrowForward className="menu-arrow" />}
+                                {['business', 'projects', 'contact'].includes(item.id) && <IoIosArrowForward className="menu-arrow" />}
                             </motion.div>
                         ))}
                     </motion.div>
@@ -106,11 +127,22 @@ const Nav = () => {
                         <div className="submenu-header">
                             <h3>OUR DIVISIONS</h3>
                         </div>
-                        {['MAMM Development', 'MAMM Real Estate', 'MAMM Green'].map((item, index) => (
-                            <motion.div key={item} className="submenu-item" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + index * 0.05 }}>
-                                <span>{item}</span>
+                        {[
+                            { name: 'MAMM Development', path: '/business/development' },
+                            { name: 'MAMM Real Estate', path: '/business/real-estate' },
+                            { name: 'MAMM Green', path: '/business/green' }
+                        ].map((item, index) => (
+                            <motion.a
+                                key={item.name}
+                                href={item.path}
+                                className="submenu-item"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.1 + index * 0.05 }}
+                                onClick={handleClose}>
+                                <span>{item.name}</span>
                                 <div className="submenu-item-hover"></div>
-                            </motion.div>
+                            </motion.a>
                         ))}
                     </motion.div>
                 );
@@ -123,11 +155,22 @@ const Nav = () => {
                         <div className="submenu-header">
                             <h3>OUR PORTFOLIO</h3>
                         </div>
-                        {['Completed', 'Ongoing', 'Upcoming'].map((item, index) => (
-                            <motion.div key={item} className="submenu-item" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + index * 0.05 }}>
-                                <span>{item}</span>
+                        {[
+                            { name: 'Completed', path: '/projects/completed' },
+                            { name: 'Ongoing', path: '/projects/ongoing' },
+                            { name: 'Upcoming', path: '/projects/upcoming' }
+                        ].map((item, index) => (
+                            <motion.a
+                                key={item.name}
+                                href={item.path}
+                                className="submenu-item"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.1 + index * 0.05 }}
+                                onClick={handleClose}>
+                                <span>{item.name}</span>
                                 <div className="submenu-item-hover"></div>
-                            </motion.div>
+                            </motion.a>
                         ))}
                     </motion.div>
                 );
@@ -140,11 +183,22 @@ const Nav = () => {
                         <div className="submenu-header">
                             <h3>GET IN TOUCH</h3>
                         </div>
-                        {['General Inquiry', 'Land Owners', 'Clients'].map((item, index) => (
-                            <motion.div key={item} className="submenu-item" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + index * 0.05 }}>
-                                <span>{item}</span>
+                        {[
+                            { name: 'General Inquiry', path: '/contact/general' },
+                            { name: 'Land Owners', path: '/contact/landowners' },
+                            { name: 'Clients', path: '/contact/clients' }
+                        ].map((item, index) => (
+                            <motion.a
+                                key={item.name}
+                                href={item.path}
+                                className="submenu-item"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.1 + index * 0.05 }}
+                                onClick={handleClose}>
+                                <span>{item.name}</span>
                                 <div className="submenu-item-hover"></div>
-                            </motion.div>
+                            </motion.a>
                         ))}
                     </motion.div>
                 );
@@ -157,7 +211,7 @@ const Nav = () => {
         <>
             <Navbar expand={false} className={`sexy-navbar ${scrolled ? 'navbar-scrolled' : ''}`} fixed="top">
                 <Container>
-                    <Navbar.Brand href="#" className="d-flex align-items-center">
+                    <Navbar.Brand href="/" className="d-flex align-items-center">
                         <motion.span className="logo-text" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
                             MAMM
                         </motion.span>

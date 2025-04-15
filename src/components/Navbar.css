@@ -133,7 +133,7 @@
 }
 
 .menu-header {
-    padding: 1.5rem 2rem 1.5rem;
+    padding: 1.5rem 0rem 1.5rem;
     margin-bottom: 0.5rem;
 }
 
@@ -212,7 +212,7 @@
 }
 
 .menu-back {
-    padding: 1.2rem 2rem;
+    padding: 1.2rem 0rem;
     margin-bottom: 1rem;
     cursor: pointer;
     color: #ffffff;
@@ -238,7 +238,7 @@
 }
 
 .submenu-header {
-    padding: 0.6rem 2rem;
+    padding: 0.6rem 0rem;
     margin-bottom: 0.5rem;
 }
 
@@ -251,18 +251,22 @@
     font-weight: 500;
 }
 
+/* Replace the existing .submenu-item and related styles with these */
+
 .submenu-item {
+    display: block; /* Important for anchor tags */
     padding: 1.3rem 2rem;
     margin: 0.6rem 0;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     font-size: 1.05rem;
-    color: #e0e0e0;
+    color: #e0e0e0 !important; /* Important to override anchor styles */
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.02);
+    text-decoration: none !important; /* Remove underline */
 }
 
 .submenu-item-hover {
@@ -278,9 +282,10 @@
 }
 
 .submenu-item:hover {
-    color: #ffffff;
+    color: #ffffff !important;
     transform: translateX(8px);
     border-color: rgba(255, 77, 77, 0.15);
+    text-decoration: none !important;
 }
 
 .submenu-item:hover .submenu-item-hover {
@@ -291,24 +296,38 @@
     position: relative;
     z-index: 1;
     letter-spacing: 0.5px;
+    display: block; /* Ensure span behaves correctly */
+}
+
+/* Add these to handle the link states */
+.submenu-item:active,
+.submenu-item:focus {
+    outline: none;
+    color: #ffffff !important;
+}
+
+/* If using React Router Link, add this */
+.submenu-item.active {
+    color: #ff4d4d !important;
+    border-color: rgba(255, 77, 77, 0.3);
 }
 
 /* Custom scrollbar */
 .menu-content::-webkit-scrollbar {
-    width: 8px;
+    width: 8px !important;
 }
 
 .menu-content::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.03) !important;
 }
 
 .menu-content::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 4px !important;
 }
 
 .menu-content::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.25) !important;
 }
 
 /* Glow and shadow effects */
@@ -342,7 +361,7 @@
     }
 
     .menu-header {
-        padding: 1rem 1.5rem 1rem;
+        padding: 1rem 0rem 1rem;
     }
 
     .menu-content {
