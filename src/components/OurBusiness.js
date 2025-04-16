@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import React, { useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Container, Row, Col } from 'react-bootstrap';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -40,13 +40,8 @@ const OurBusiness = () => {
     const sectionRef = useRef(null);
     const titleRef = useRef(null);
     const filterRef = useRef(null);
-    const heroRef = useRef(null);
+    const imageRef = useRef(null);
     const businessCardsRef = useRef([]);
-    const { scrollYProgress } = useScroll();
-
-    // Hero image reveal animation
-    const heroScale = useTransform(scrollYProgress, [0, 0.5], [1.2, 1]);
-    const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [0.7, 1]);
 
     useEffect(() => {
         // Title animation
@@ -85,16 +80,17 @@ const OurBusiness = () => {
 
         // Hero image reveal animation
         gsap.fromTo(
-            heroRef.current,
+            imageRef.current,
             { clipPath: 'inset(0% 25% 0% 25%)' },
             {
                 clipPath: 'inset(0% 0% 0% 0%)',
+                duration: 1.5,
+                ease: 'power2.out',
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: 'top bottom',
                     end: 'center center',
-                    scrub: true,
-                    toggleActions: 'play play reverse reverse'
+                    scrub: 1
                 }
             }
         );
@@ -152,13 +148,7 @@ const OurBusiness = () => {
                     OUR BUSINESSES
                 </div>
 
-                <motion.picture
-                    className="hero-business-picture"
-                    ref={heroRef}
-                    style={{
-                        scale: heroScale,
-                        opacity: heroOpacity
-                    }}>
+                <motion.picture className="hero-business-picture" ref={imageRef}>
                     {/* Mobile (up to 480px) */}
                     <source media="(max-width: 480px)" srcSet={heroMobile} />
                     {/* Tablet (up to 1024px) */}

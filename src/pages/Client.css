@@ -6,7 +6,7 @@
 }
 @media (max-width: 767px) {
     .client-page {
-        padding: 8rem 1rem 4rem !important;
+        padding: 8rem 0rem 4rem !important;
     }
 }
 .section-client-title-container {

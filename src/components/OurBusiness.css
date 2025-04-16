@@ -122,7 +122,11 @@
     width: 100%;
     height: 100%; /* Ensure it's 100% of viewport */
     z-index: 1;
-    opacity: 0.5;
+}
+.hero-business-picture picture {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .hero-business-img {
@@ -131,6 +135,9 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    transform-origin: center center;
+    clip-path: inset(0% 0% 0% 0%);
+    transition: clip-path 3s ease-out;
 }
 
 .business-card-container {
