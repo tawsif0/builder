@@ -1,34 +1,38 @@
 /* eslint-disable max-lines */
-import React, { useRef, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import './About.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
     const ref = useRef();
     const titleRef = useRef();
     const imageRef = useRef();
 
+    // Scroll-based animations with custom easing
+    const { scrollYProgress } = useScroll({
+        target: imageRef,
+        offset: ['start end', 'end start']
+    });
+
+    // Enhanced image animation with ease-out curve
+    const imageY = useTransform(
+        scrollYProgress,
+        [0, 1],
+        [0, -250], // Increased movement range
+        { ease: (t) => t * (2 - t) } // easeOutQuad approximation
+    );
+
+    // Add scale effect for parallax
+    const imageScale = useTransform(
+        scrollYProgress,
+        [0, 1],
+        [1, 1.05], // Subtle zoom effect
+        { ease: (t) => t * (2 - t) }
+    );
+
+    // View-based animations
     const isInView = useInView(ref, { once: false, amount: 0.4 });
     const isTitleInView = useInView(titleRef, { once: false, amount: 0.4 });
-
-    useEffect(() => {
-        if (imageRef.current) {
-            gsap.to(imageRef.current, {
-                y: -150,
-                ease: 'power1.out',
-                scrollTrigger: {
-                    trigger: imageRef.current,
-                    start: 'top bottom',
-                    end: '+=600',
-                    scrub: true
-                }
-            });
-        }
-    }, []);
 
     const content =
         "Our real estate portfolio reflects a legacy of excellence. Showcasing some of the nation's most prestigious developments, we are committed to delivering exceptional service to both investors and buyers. Our success is founded on unwavering standards and meticulous attention to detail—hallmarks of true luxury and distinction.";
@@ -49,7 +53,15 @@ const About = () => {
                             <h2 className="about-title">ABOUT</h2>
                             <div className="title-line"></div>
                         </motion.div>
-                        <div className="about-image" ref={imageRef}></div>
+                        <motion.div
+                            className="about-image"
+                            ref={imageRef}
+                            style={{
+                                y: imageY,
+                                scale: imageScale,
+                                transition: 'all 0.1s linear' // Smooth interpolation
+                            }}
+                        />
                     </div>
 
                     {/* Content */}

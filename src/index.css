@@ -13,3 +13,10 @@ html {
 body {
     background-color: #000000;
 }
+body {
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+html,
+body {
+    max-width: 100%; /* Ensures no overflow */
+}
