@@ -1,10 +1,12 @@
 /* eslint-disable max-lines */
 import React, { useState, useRef, useEffect } from 'react';
-import { Form, Button, Row, Col, Alert, Container } from 'react-bootstrap';
+import { Form, Button, Row, Col, Container } from 'react-bootstrap';
 import emailjs from 'emailjs-com';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Client.css';
 import heroDesktop from '../assests/images/bg-pc.png';
 import heroTablet from '../assests/images/bg-pc.png';
@@ -22,7 +24,6 @@ const ClientSection = () => {
     const formRightRef = useRef(null);
 
     useEffect(() => {
-        // Hero section animations
         gsap.fromTo(
             titleRef.current,
             { y: 220, opacity: 1 },
@@ -153,8 +154,7 @@ const ClientSection = () => {
     });
 
     const [errors, setErrors] = useState({});
-    const [submitted, setSubmitted] = useState(false);
-
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const validate = () => {
         const temp = {};
         if (!formData.name) temp.name = 'Name is required';
@@ -173,11 +173,20 @@ const ClientSection = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!validate()) return;
+        setIsSubmitting(true);
 
         emailjs
-            .send('your_service_id', 'your_template_id', formData, 'your_user_id')
+            .send('service_3rnf3rd', 'template_yayu2wm', formData, 'lUIfSHXMKFhdmS6hP')
             .then(() => {
-                setSubmitted(true);
+                toast.success('Sent successfully!', {
+                    position: 'top-center',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined
+                });
                 setFormData({
                     name: '',
                     email: '',
@@ -188,128 +197,147 @@ const ClientSection = () => {
             })
             .catch((error) => {
                 console.error('EmailJS Error:', error);
+                toast.error('Failed to send message. Please try again.', {
+                    position: 'top-center',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined
+                });
+            })
+            .finally(() => {
+                setIsSubmitting(false);
             });
     };
 
     return (
-        <div className="client-page" ref={sectionRef}>
-            {/* Hero Section */}
-            <div className="section-client-title-container">
-                <h1 className="section-client-title" ref={titleRef}>
-                    CLIENTS
-                </h1>
-            </div>
-
-            {/* Hero image container */}
-            <Container fluid className="hero-client-container position-relative overflow-hidden">
-                <div className="client-title-filter-overlay" ref={filterRef}>
-                    CLIENTS
+        <>
+            <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+            <div className="client-page" ref={sectionRef}>
+                {/* Hero Section */}
+                <div className="section-client-title-container">
+                    <h1 className="section-client-title" ref={titleRef}>
+                        CLIENTS
+                    </h1>
                 </div>
 
-                <motion.div className="hero-client-picture" ref={imageRef}>
-                    <picture>
-                        <source media="(max-width: 480px)" srcSet={heroMobile} />
-                        <source media="(max-width: 1024px)" srcSet={heroTablet} />
-                        <img className="hero-client-img" src={heroDesktop} alt="client" loading="eager" />
-                    </picture>
-                </motion.div>
-                <div className="hero-client-overlay"></div>
-            </Container>
-
-            {/* Form Section */}
-            <div className="client-section text-white">
-                <Container>
-                    <div className="message-box text-center mb-5" ref={messageBoxRef}>
-                        <h2 className="sections-title">A message for clients</h2>
-                        <p>
-                            Acquiring an apartment, a home or even an office space is a person's life-long dream. This dream drives him or her to accumulate the required finance slowly and gradually,
-                            which is the start of shaping this dream into reality. This relentless pursuit of realizing such a dream can flow from generation to generation. But finally, when a space
-                            is purchased, has anyone thought to what extent this "dream" is actually fulfilled?
-                        </p>
-                        <p>
-                            We know that moment is an important stepping-stone for you, and hence we at MAMM have been preparing for just that. Our apartments, condominiums and commercial complexes
-                            compete with the best that the modern world has to offer. From temperature-controlled swimming pools to lush rooftop gardens and terraces, from state-of-the-art gymnasiums
-                            to spacious walkways and children's play facilities, you'll find the solution to your need for stylish urban living with us at SHL.
-                        </p>
-                        <p>
-                            Even business becomes a pleasure in our commercial spaces with central air-conditioning, triple-height lobby areas multilayered parking facilities and much more. Because at
-                            MAMM, we're not just building spaces; we're crafting dreams into reality, ensuring that your journey to owning a piece of opulence is as exceptional as the dream itself.
-                        </p>
+                {/* Hero image container */}
+                <Container fluid className="hero-client-container position-relative overflow-hidden">
+                    <div className="client-title-filter-overlay" ref={filterRef}>
+                        CLIENTS
                     </div>
 
-                    <div className="form-containers" ref={formContainerRef}>
-                        <h2 className="text-center mb-4 mt-4">LET'S CONNECT</h2>
-                        {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
-
-                        <Form onSubmit={handleSubmit}>
-                            <Row>
-                                <Col md={6} ref={formLeftRef}>
-                                    <div className="floating-label-group">
-                                        <Form.Label>Name*</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Your Name"
-                                            name="name"
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                            className={`custom-input ${errors.name ? 'input-error' : ''}`}
-                                        />
-                                        {errors.name && <div className="error-text">{errors.name}</div>}
-                                    </div>
-
-                                    <div className="floating-label-group">
-                                        <Form.Label>Email*</Form.Label>
-                                        <Form.Control
-                                            type="email"
-                                            placeholder="Your Email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            className={`custom-input ${errors.email ? 'input-error' : ''}`}
-                                        />
-                                        {errors.email && <div className="error-text">{errors.email}</div>}
-                                    </div>
-
-                                    <div className="floating-label-group">
-                                        <Form.Label>Contact Number*</Form.Label>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Your Phone Number"
-                                            name="contactNumber"
-                                            value={formData.contactNumber}
-                                            onChange={handleChange}
-                                            className={`custom-input ${errors.contactNumber ? 'input-error' : ''}`}
-                                        />
-                                        {errors.contactNumber && <div className="error-text">{errors.contactNumber}</div>}
-                                    </div>
-                                </Col>
-                                <Col md={6} ref={formRightRef}>
-                                    <div className="floating-label-group">
-                                        <Form.Label>Your Message Here</Form.Label>
-                                        <Form.Control
-                                            as="textarea"
-                                            rows={8}
-                                            placeholder="Type your message here..."
-                                            name="message"
-                                            value={formData.message}
-                                            onChange={handleChange}
-                                            className={`custom-input custom-textarea ${errors.message ? 'input-error' : ''}`}
-                                        />
-                                        {errors.message && <div className="error-text">{errors.message}</div>}
-                                    </div>
-                                </Col>
-                            </Row>
-                            <div className="text-center mt-4">
-                                <Button type="submit" className="submit-btns">
-                                    <span className="arrows-circles">➜</span>
-                                    <span>SUBMIT</span>
-                                </Button>
-                            </div>
-                        </Form>
-                    </div>
+                    <motion.div className="hero-client-picture" ref={imageRef}>
+                        <picture>
+                            <source media="(max-width: 480px)" srcSet={heroMobile} />
+                            <source media="(max-width: 1024px)" srcSet={heroTablet} />
+                            <img className="hero-client-img" src={heroDesktop} alt="client" loading="eager" />
+                        </picture>
+                    </motion.div>
+                    <div className="hero-client-overlay"></div>
                 </Container>
+
+                {/* Form Section */}
+                <div className="client-section text-white">
+                    <Container>
+                        <div className="message-box text-center mb-5" ref={messageBoxRef}>
+                            <h2 className="sections-title">A message for clients</h2>
+                            <p>
+                                Acquiring an apartment, a home or even an office space is a person's life-long dream. This dream drives him or her to accumulate the required finance slowly and
+                                gradually, which is the start of shaping this dream into reality. This relentless pursuit of realizing such a dream can flow from generation to generation. But finally,
+                                when a space is purchased, has anyone thought to what extent this "dream" is actually fulfilled?
+                            </p>
+                            <p>
+                                We know that moment is an important stepping-stone for you, and hence we at MAMM have been preparing for just that. Our apartments, condominiums and commercial
+                                complexes compete with the best that the modern world has to offer. From temperature-controlled swimming pools to lush rooftop gardens and terraces, from
+                                state-of-the-art gymnasiums to spacious walkways and children's play facilities, you'll find the solution to your need for stylish urban living with us at SHL.
+                            </p>
+                            <p>
+                                Even business becomes a pleasure in our commercial spaces with central air-conditioning, triple-height lobby areas multilayered parking facilities and much more.
+                                Because at MAMM, we're not just building spaces; we're crafting dreams into reality, ensuring that your journey to owning a piece of opulence is as exceptional as the
+                                dream itself.
+                            </p>
+                        </div>
+
+                        <div className="form-containers" ref={formContainerRef}>
+                            <h2 className="text-center mb-4 mt-4">LET'S CONNECT</h2>
+
+                            <Form onSubmit={handleSubmit}>
+                                <Row>
+                                    <Col md={6} ref={formLeftRef}>
+                                        <div className="floating-label-group">
+                                            <Form.Label>Name*</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Your Name"
+                                                name="name"
+                                                value={formData.name}
+                                                onChange={handleChange}
+                                                className={`custom-input ${errors.name ? 'input-error' : ''}`}
+                                                autoComplete="off"
+                                            />
+                                            {errors.name && <div className="error-text">{errors.name}</div>}
+                                        </div>
+
+                                        <div className="floating-label-group">
+                                            <Form.Label>Email*</Form.Label>
+                                            <Form.Control
+                                                type="email"
+                                                placeholder="Your Email"
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleChange}
+                                                className={`custom-input ${errors.email ? 'input-error' : ''}`}
+                                                autoComplete="off"
+                                            />
+                                            {errors.email && <div className="error-text">{errors.email}</div>}
+                                        </div>
+
+                                        <div className="floating-label-group">
+                                            <Form.Label>Contact Number*</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Your Phone Number"
+                                                name="contactNumber"
+                                                value={formData.contactNumber}
+                                                onChange={handleChange}
+                                                className={`custom-input ${errors.contactNumber ? 'input-error' : ''}`}
+                                                autoComplete="off"
+                                            />
+                                            {errors.contactNumber && <div className="error-text">{errors.contactNumber}</div>}
+                                        </div>
+                                    </Col>
+                                    <Col md={6} ref={formRightRef}>
+                                        <div className="floating-label-group">
+                                            <Form.Label>Your Message Here</Form.Label>
+                                            <Form.Control
+                                                as="textarea"
+                                                rows={8}
+                                                placeholder="Type your message here..."
+                                                name="message"
+                                                value={formData.message}
+                                                onChange={handleChange}
+                                                className={`custom-input custom-textarea ${errors.message ? 'input-error' : ''}`}
+                                                autoComplete="off"
+                                            />
+                                            {errors.message && <div className="error-text">{errors.message}</div>}
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <div className="text-center mt-4">
+                                    <Button type="submit" className="submit-btns" disabled={isSubmitting}>
+                                        <span className="arrows-circles">➜</span>
+                                        <span> {isSubmitting ? 'SENDING...' : 'SUBMIT'}</span>
+                                    </Button>
+                                </div>
+                            </Form>
+                        </div>
+                    </Container>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

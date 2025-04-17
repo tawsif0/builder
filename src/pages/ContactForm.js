@@ -3,9 +3,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
 import emailjs from 'emailjs-com';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './ContactForm.css';
 import contactImage from '../assests/images/contactPage.png';
 
@@ -28,7 +29,7 @@ const ContactForm = () => {
                     trigger: sectionOneRef.current,
                     start: 'top 80%',
                     end: 'bottom 20%',
-                    toggleActions: 'play none none reverse' // play when entering, reverse when leaving
+                    toggleActions: 'play none none reverse'
                 }
             }),
             gsap.from(sectionTwoRef.current, {
@@ -69,22 +70,17 @@ const ContactForm = () => {
             })
         ];
 
-        // Refresh ScrollTrigger after animations are set up
         ScrollTrigger.refresh();
 
-        // Cleanup function
         return () => {
             animations.forEach((anim) => {
-                if (anim.scrollTrigger) {
-                    anim.scrollTrigger.kill();
-                }
+                if (anim.scrollTrigger) anim.scrollTrigger.kill();
                 anim.kill();
             });
             ScrollTrigger.clearMatchMedia();
         };
     }, []);
 
-    // ... rest of your component code remains the same ...
     const [formData, setFormData] = useState({
         userName: '',
         userEmail: '',
@@ -92,7 +88,7 @@ const ContactForm = () => {
     });
 
     const [errors, setErrors] = useState({});
-    const [submitted, setSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -100,49 +96,76 @@ const ContactForm = () => {
             ...prev,
             [name]: value
         }));
+        // Clear error when user types
+        if (errors[name]) {
+            setErrors((prev) => ({ ...prev, [name]: '' }));
+        }
     };
 
     const validate = () => {
         const newErrors = {};
-        if (!formData.userName.trim()) newErrors.userName = 'Name is a required field';
+        if (!formData.userName.trim()) newErrors.userName = 'Name is required';
         if (!formData.userEmail.trim()) newErrors.userEmail = 'Email is required';
         else if (!/\S+@\S+\.\S+/.test(formData.userEmail)) newErrors.userEmail = 'Email is invalid';
-        if (!formData.message.trim()) newErrors.message = 'Message is a required field';
+        if (!formData.message.trim()) newErrors.message = 'Message is required';
         return newErrors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
+            toast.error('Please fix the errors in the form', {
+                position: 'top-center',
+                autoClose: 5000
+            });
             return;
         }
 
-        setErrors({});
-        emailjs
-            .send(
-                'YOUR_SERVICE_ID',
-                'YOUR_TEMPLATE_ID',
+        setIsSubmitting(true);
+        try {
+            await emailjs.send(
+                'service_3rnf3rd',
+                'template_yayu2wm',
                 {
                     user_name: formData.userName,
                     user_email: formData.userEmail,
                     message: formData.message
                 },
-                'YOUR_PUBLIC_KEY'
-            )
-            .then(() => {
-                setSubmitted(true);
-                setFormData({ userName: '', userEmail: '', message: '' });
-                setTimeout(() => setSubmitted(false), 4000);
-            })
-            .catch((error) => {
-                console.error('Email send error:', error);
+                'lUIfSHXMKFhdmS6hP'
+            );
+
+            setFormData({ userName: '', userEmail: '', message: '' });
+            toast.success('Sent successfully!', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined
             });
+        } catch (error) {
+            console.error('Email send error:', error);
+            toast.error('Failed to send. Please try again.', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <>
+            <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+
             <div ref={sectionOneRef} className="contact-section-1 text-white">
                 <div className="container">
                     <div className="row d-flex align-items-stretch">
@@ -185,33 +208,33 @@ const ContactForm = () => {
                     <form className="contact-form container" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label>Name</label>
-                            <input type="text" name="userName" className={`form-input ${errors.userName ? 'error' : ''}`} value={formData.userName} onChange={handleChange} />
+                            <input type="text" name="userName" className={`form-input ${errors.userName ? 'error' : ''}`} value={formData.userName} onChange={handleChange} autoComplete="off" />
                             {errors.userName && <div className="error-message">{errors.userName}</div>}
                         </div>
                         <div className="form-group">
                             <label>Email</label>
-                            <input type="email" name="userEmail" className={`form-input ${errors.userEmail ? 'error' : ''}`} value={formData.userEmail} onChange={handleChange} />
+                            <input type="email" name="userEmail" className={`form-input ${errors.userEmail ? 'error' : ''}`} value={formData.userEmail} onChange={handleChange} autoComplete="off" />
                             {errors.userEmail && <div className="error-message">{errors.userEmail}</div>}
                         </div>
                         <div className="form-group">
                             <label>Message</label>
-                            <textarea name="message" className={`form-input ${errors.message ? 'error' : ''}`} rows="4" value={formData.message} onChange={handleChange} />
+                            <textarea name="message" className={`form-input ${errors.message ? 'error' : ''}`} rows="4" value={formData.message} onChange={handleChange} autoComplete="off" />
                             {errors.message && <div className="error-message">{errors.message}</div>}
                         </div>
-                        <button type="submit" className="submit-btn">
-                            <span className="arrow-circle">&#10140;</span> SUBMIT
+                        <button type="submit" className="submit-btn" disabled={isSubmitting}>
+                            <span className="arrow-circle">&#10140;</span>
+                            {isSubmitting ? 'SENDING...' : 'SUBMIT'}
                         </button>
-                        {submitted && <div className="success-message">Message sent successfully!</div>}
                     </form>
 
                     <div ref={formRef} className="contact-info container">
                         <div className="info-item">
                             <span className="info-label">Email:</span>
-                            <span className="info-value">info@mamm.com</span>
+                            <span className="info-value">mammgrp@gmail.com</span>
                         </div>
                         <div className="info-item">
                             <span className="info-label">Sales:</span>
-                            <span className="info-value">+88 012345678</span>
+                            <span className="info-value">+880 1711-989950 </span>
                         </div>
                     </div>
                 </div>

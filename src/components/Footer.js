@@ -1,10 +1,35 @@
 /* eslint-disable max-lines */
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 import './Footer.css';
 
 export default function Footer() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleClick = () => {
+        if (location.pathname !== '/') {
+            navigate('/', { state: { fromFooter: true } });
+        } else {
+            scrollToHero();
+        }
+    };
+
+    const scrollToHero = () => {
+        const hero = document.getElementById('hero-section');
+        if (hero) {
+            hero.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    useEffect(() => {
+        if (location.state?.fromFooter && location.pathname === '/') {
+            scrollToHero();
+        }
+    }, [location]);
+
     return (
         <MDBFooter className="text-lg-start text-muted footer-main">
             <section className="text-center d-flex justify-content-center justify-content-lg-between p-4 border-bottom footer-social-section container">
@@ -32,11 +57,15 @@ export default function Footer() {
                 <MDBContainer className="text-md-start mt-5 footer-container container">
                     <MDBRow className="mt-3">
                         <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4 footer-col">
-                            <h6 className="text-uppercase fw-bold mb-4 footer-heading">
-                                <MDBIcon color="secondary" icon="gem" className="me-3" />
-                                MAMM.
-                            </h6>
-                            <p className="footer-description">Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            <div onClick={handleClick} role="button" className="mb-4 text-uppercase fw-bold footer-heading">
+                                <h6>
+                                    <i className="me-3 fas fa-gem text-secondary"></i> MAMM.
+                                </h6>
+                            </div>
+
+                            <p className="footer-description">
+                                MAMM redefines luxury real estate through excellence, innovation, and detail, delivering prestigious developments for discerning investors and buyers.
+                            </p>
                         </MDBCol>
 
                         <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4 footer-col">
@@ -78,10 +107,12 @@ export default function Footer() {
                                 <MDBIcon color="secondary" icon="home" className="me-2" /> Dhaka, Bangladesh
                             </p>
                             <p>
-                                <MDBIcon color="secondary" icon="envelope" className="me-3" /> info@example.com
+                                <MDBIcon color="secondary" icon="envelope" className="me-3" />
+                                mammgrp@gmail.com
                             </p>
                             <p>
-                                <MDBIcon color="secondary" icon="phone" className="me-3" /> +01 234 567 88
+                                <MDBIcon color="secondary" icon="phone" className="me-3" />
+                                +880 1711-989950
                             </p>
                         </MDBCol>
                     </MDBRow>

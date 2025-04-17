@@ -269,7 +269,7 @@
 .custom-input {
     background-color: transparent !important;
     border: 1px solid #fff !important;
-    color: white;
+    color: white !important;
     padding: 15px !important;
     border-radius: 0 !important;
     font-size: 1rem !important;

@@ -4,7 +4,7 @@
     background-color: #000000;
     padding-top: 0;
     z-index: 0;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* Add to OurBusiness.css */
@@ -30,6 +30,7 @@
 .title-filter-overlay {
     position: absolute;
     top: -6.7rem;
+    left: 50%;
     transform: translate(-50%, -50%);
     font-size: clamp(3rem, 9vw, 6rem);
     font-weight: 600;
@@ -45,20 +46,20 @@
 /* Laptop (max-width: 1199px) */
 @media (max-width: 1400px) {
     .title-filter-overlay {
-        top: -6.7rem;
+        top: -6.5rem;
         -webkit-text-stroke: 1.5px white;
     }
 }
 @media (max-width: 1155px) {
     .title-filter-overlay {
-        top: -5.3rem;
+        top: -7.5rem;
         -webkit-text-stroke: 1.2px white;
     }
 }
 /* iPad Pro and tablets (max-width: 992px) */
 @media (max-width: 992px) {
     .title-filter-overlay {
-        top: -4.2rem;
+        top: -7.5rem;
         -webkit-text-stroke: 1.2px white;
     }
 }
@@ -66,7 +67,7 @@
 /* Small tablets & landscape phones (max-width: 768px) */
 @media (max-width: 768px) {
     .title-filter-overlay {
-        top: -3.7rem;
+        top: -7rem;
         -webkit-text-stroke: 1px white;
     }
 }
@@ -74,7 +75,7 @@
 /* Large phones (max-width: 600px) */
 @media (max-width: 600px) {
     .title-filter-overlay {
-        top: -3.1rem;
+        top: -8.6rem;
         font-size: clamp(2.4rem, 9vw, 5rem);
         -webkit-text-stroke: 1px white;
     }
@@ -83,7 +84,7 @@
 /* Small phones (max-width: 480px) */
 @media (max-width: 480px) {
     .title-filter-overlay {
-        top: -2.49rem;
+        top: -8.49rem;
         font-size: clamp(2.2rem, 2.2rem, 4.5rem);
         -webkit-text-stroke: 0.8px white;
     }
@@ -98,7 +99,6 @@
 .hero-business-container {
     height: 100vh;
     min-height: 800px;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,9 +120,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100%; /* Ensure it's 100% of viewport */
     z-index: 1;
-    overflow: hidden; /* ← Add this too */
 }
 .hero-business-picture picture {
     width: 100%;
@@ -137,6 +136,8 @@
     object-fit: cover;
     object-position: center;
     transform-origin: center center;
+    clip-path: inset(0% 0% 0% 0%);
+    transition: clip-path 3s ease-out;
 }
 
 .business-card-container {
@@ -276,7 +277,7 @@
 
 @media (min-width: 993px) and (max-width: 1199px) {
     .section-business-title-container {
-        padding: 2.4rem 0;
+        padding: 4.4rem 0;
     }
     .section-business-title {
         padding: 6.3rem 0;
@@ -297,7 +298,7 @@
     }
 
     .section-business-title-container {
-        padding: 2.1rem 0;
+        padding: 4.4rem 0;
     }
     .business-card-col {
         flex: 0 0 50%;
@@ -310,21 +311,19 @@
 }
 @media (max-width: 890px) {
     .section-business-title-container {
-        padding: 1.9rem 0;
+        padding: 3.9rem 0;
     }
 }
 
 @media (max-width: 768px) {
     .section-business-title {
-        padding: 6.7rem 0;
+        padding: 8.7rem 0;
     }
     .hero-business-container {
         margin-top: -8rem;
         min-height: 500px;
     }
-    .section-business-title-container {
-        padding: 4rem 0;
-    }
+
     .business-card-col {
         flex: 0 0 100%;
         max-width: 100%;
@@ -348,19 +347,13 @@
         font-size: 1rem;
     }
 }
-@media (max-width: 600px) {
-    .section-business-title-container {
-        padding: 5rem 0;
-    }
-}
+
 @media (max-width: 480px) {
     .section-business-title {
         font-size: 2.2rem;
         padding: 7.7rem 0;
     }
-    .section-business-title-container {
-        padding: 2.6rem 0;
-    }
+
     .hero-business-container {
         margin-top: -6rem;
         min-height: 400px;
@@ -375,9 +368,12 @@
 /* Add these styles to your existing OurBusiness.css */
 
 .business-card {
-    will-change: transform, opacity; /* Optimize animations */
+    opacity: 0; /* Start hidden for animation */
+    transform: translateY(20px); /* Initial position for animation */
+    will-change: transform, opacity; /* Optimize for animation */
 }
 
-.section-business-title {
-    will-change: transform, opacity; /* Optimizes animation performance */
+/* Ensure the container is ready for animations */
+.business-card-container {
+    overflow: hidden;
 }
