@@ -252,9 +252,15 @@
 }
 
 /* Replace the existing .submenu-item and related styles with these */
-
+.submenu-item span {
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.5px;
+    display: block; /* Ensure span behaves correctly */
+}
 .submenu-item {
     display: block; /* Important for anchor tags */
+    text-decoration: none !important;
     padding: 1.3rem 2rem;
     margin: 0.6rem 0;
     border-radius: 10px;
@@ -290,13 +296,6 @@
 
 .submenu-item:hover .submenu-item-hover {
     transform: translateX(0);
-}
-
-.submenu-item span {
-    position: relative;
-    z-index: 1;
-    letter-spacing: 0.5px;
-    display: block; /* Ensure span behaves correctly */
 }
 
 /* Add these to handle the link states */

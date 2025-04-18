@@ -1,5 +1,6 @@
 /* eslint-disable max-lines */
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Navbar, Offcanvas, Container } from 'react-bootstrap';
 import { FiMenu } from 'react-icons/fi';
 import { IoIosArrowForward } from 'react-icons/io';
@@ -128,21 +129,17 @@ const Nav = () => {
                             <h3>OUR DIVISIONS</h3>
                         </div>
                         {[
-                            { name: 'MAMM Development', path: '/business/development' },
-                            { name: 'MAMM Real Estate', path: '/business/real-estate' },
-                            { name: 'MAMM Green', path: '/business/green' }
+                            { name: 'MAMM Development', path: '/' },
+                            { name: 'MAMM Real Estate', path: '/' },
+                            { name: 'MAMM Green', path: '/' }
                         ].map((item, index) => (
-                            <motion.a
-                                key={item.name}
-                                href={item.path}
-                                className="submenu-item"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.1 + index * 0.05 }}
-                                onClick={handleClose}>
-                                <span>{item.name}</span>
-                                <div className="submenu-item-hover"></div>
-                            </motion.a>
+                            <motion.div key={item.name} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + index * 0.05 }} onClick={handleClose}>
+                                {/* Use Link here instead of <a> */}
+                                <Link to={item.path} className="submenu-item">
+                                    <span>{item.name}</span>
+                                    <div className="submenu-item-hover"></div>
+                                </Link>
+                            </motion.div>
                         ))}
                     </motion.div>
                 );
@@ -160,17 +157,13 @@ const Nav = () => {
                             { name: 'Ongoing', path: '/projects/ongoing' },
                             { name: 'Upcoming', path: '/projects/upcoming' }
                         ].map((item, index) => (
-                            <motion.a
-                                key={item.name}
-                                href={item.path}
-                                className="submenu-item"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.1 + index * 0.05 }}
-                                onClick={handleClose}>
-                                <span>{item.name}</span>
-                                <div className="submenu-item-hover"></div>
-                            </motion.a>
+                            <motion.div key={item.name} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + index * 0.05 }} onClick={handleClose}>
+                                {/* Use Link here instead of <a> */}
+                                <Link to={item.path} className="submenu-item">
+                                    <span>{item.name}</span>
+                                    <div className="submenu-item-hover"></div>
+                                </Link>
+                            </motion.div>
                         ))}
                     </motion.div>
                 );
@@ -188,17 +181,13 @@ const Nav = () => {
                             { name: 'Land Owners', path: '/contact/landowners' },
                             { name: 'Clients', path: '/contact/clients' }
                         ].map((item, index) => (
-                            <motion.a
-                                key={item.name}
-                                href={item.path}
-                                className="submenu-item"
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.1 + index * 0.05 }}
-                                onClick={handleClose}>
-                                <span>{item.name}</span>
-                                <div className="submenu-item-hover"></div>
-                            </motion.a>
+                            <motion.div key={item.name} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 + index * 0.05 }} onClick={handleClose}>
+                                {/* Use Link here instead of <a> */}
+                                <Link to={item.path} className="submenu-item">
+                                    <span>{item.name}</span>
+                                    <div className="submenu-item-hover"></div>
+                                </Link>
+                            </motion.div>
                         ))}
                     </motion.div>
                 );
