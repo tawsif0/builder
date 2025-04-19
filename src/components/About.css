@@ -137,10 +137,27 @@
 /* Responsive Background Image Adjustments */
 @media (min-width: 1400px) {
     .about-section {
-        background-image: url('../assests/images/background.svg');
+        position: relative;
+        z-index: 1;
+    }
+
+    .about-section::before {
+        content: '';
+        position: absolute;
+        top: 4.5rem; /* Instead of margin-top */
+        right: 0;
+        bottom: 0;
+        width: 1350px;
+        height: 100%;
+        margin: 0 auto;
+        left: 0;
+        background-image: url('../assests/images/Circle.png');
         background-size: contain;
         background-repeat: no-repeat;
-        background-position: center center;
+        background-position: center right;
+        opacity: 0.2;
+        z-index: -1;
+        pointer-events: none;
     }
 }
 

@@ -23,6 +23,7 @@ const Hero = () => {
                     <div className="image-fade"></div>
                 </motion.div>
             </div>
+            <div className="hero-overlay"></div>
         </section>
     );
 };
